@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evo11ve AI Skills Assistant — Voice Conversational Assistant</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Evo11ve AI Skills Assistant</h1>
+  <p class="subtitle">Voice conversational assistant for the <a href="https://www.evo11ve.ai/for-ai" target="_blank" rel="noopener">AI Skills Program</a> (Classes 6–12)</p>
+  <p class="honesty">Answers come only from the official program page. Anything the page does not state is answered with &ldquo;not stated&rdquo; plus a contact path — never guessed.</p>
+</header>
+
+<main>
+  <section id="chat" aria-live="polite" aria-label="Conversation"></section>
+
+  <section class="chips" aria-label="Suggested questions">
+    <button data-q="What is the price of the program?">Price</button>
+    <button data-q="How many hours is the program?">Hours</button>
+    <button data-q="What certificate do students get?">Certificate</button>
+    <button data-q="What projects can students build?">Projects</button>
+    <button data-q="How long does mentor support last?">Mentors</button>
+    <button data-q="Which classes is the program for?">Eligibility</button>
+  </section>
+
+  <section class="composer">
+    <input id="question" type="text" placeholder="Ask about the AI Skills Program… or tap Speak" autocomplete="off">
+    <button id="micBtn" type="button">🎤 Speak</button>
+    <button id="sendBtn" type="button">Send</button>
+    <label class="voice-opt"><input id="voiceToggle" type="checkbox" checked> Voice replies</label>
+  </section>
+
+  <section class="details-form" aria-label="Your details for email actions">
+    <h2>Your details (optional, used only in email drafts)</h2>
+    <input id="visitorName" type="text" placeholder="Your name">
+    <select id="visitorClass">
+      <option value="">Class…</option>
+      <option>Class 6</option><option>Class 7</option><option>Class 8</option>
+      <option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option>
+    </select>
+    <input id="visitorContact" type="text" placeholder="Your email or phone">
+    <div class="draft-buttons">
+      <button data-draft="enroll" type="button">Prepare enrollment email</button>
+      <button data-draft="callback" type="button">Request a callback</button>
+      <button data-draft="human" type="button">Escalate to a human</button>
+    </div>
+  </section>
+
+  <section id="emailPanel" class="email-panel hidden" aria-label="Prepared email">
+    <h2>Prepared email: <span id="emailKind"></span></h2>
+    <p><strong>To:</strong> <span id="emailTo"></span></p>
+    <p><strong>Subject:</strong> <span id="emailSubject"></span></p>
+    <pre id="emailBody"></pre>
+    <p id="emailStatus" class="status"></p>
+    <button id="mailtoBtn" type="button">Open in your mail app</button>
+    <button id="copyBtn" type="button">Copy email text</button>
+  </section>
+
+  <section class="about">
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Question</strong> — typed, spoken (browser speech recognition), or picked from a suggestion.</li>
+      <li><strong>Match</strong> — the question is scored against a knowledge base built only from <a href="https://www.evo11ve.ai/for-ai">evo11ve.ai/for-ai</a> (fetched 29 Oct 2026).</li>
+      <li><strong>Answer or escalate</strong> — a matching program fact is answered (and spoken aloud if voice replies are on). No match, or a fact the page does not state, produces an honest &ldquo;not stated&rdquo; answer with a callback / human-escalation email draft.</li>
+      <li><strong>Email triggers</strong> — enrollment, callback, and human-escalation intents compose the exact email and hand it to your own mail app. Nothing is reported as sent, because a web page cannot confirm delivery; server-side sending can be wired at the documented point in app.js.</li>
+    </ol>
+    <p>Shareable question links work too: add <code>#ask=your question</code> to this page&rsquo;s URL and the assistant answers it on load.</p>
+  </section>
+</main>
+
+<footer>
+  Built for the Evo11ve AI Skills Program technical assessment. Program facts: <a href="https://www.evo11ve.ai/for-ai">evo11ve.ai/for-ai</a>. This is a demonstration assistant, not an official Evo11ve service.
+</footer>
+
+<script src="kb.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
